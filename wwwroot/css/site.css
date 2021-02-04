@@ -1,0 +1,72 @@
+﻿/*CSS page to make the website not look like junk. As much*/
+body {
+    background-color: antiquewhite;
+}
+h1 {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+div {
+    position: center;
+    text-align: center;
+    font-size: 18px;
+}
+menu {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+menu ul {
+    clear: left;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    text-align: center;
+}
+
+menu ul li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    right: 50%;
+}
+
+menu ul li a {
+    display: block;
+    margin: 0 0 0 1px;
+    padding: 3px 10px;
+    background-color: red;
+    color: white;
+    font-size: 26px;
+    text-decoration: none;
+}
+
+menu ul li a:hover {
+    background-color: lightcoral;
+    color: white;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}

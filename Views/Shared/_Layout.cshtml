@@ -1,0 +1,27 @@
+﻿@*This cshtml is the basis for all the html pages. All the html inherits from this layout page.*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>The Joel Hilton Film Collection</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+</head>
+
+<body>
+    <h1>@ViewBag.Title</h1>
+    <menu>
+        <ul class="menu">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Home" asp-action="MovieInsert">Input Film</a></li>
+            <li><a asp-controller="Home" asp-action="MovieList">Film List</a></li>
+            <li><a asp-controller="Home" asp-action="Podcast">Podcast</a></li>
+        </ul>
+    </menu>
+
+    @RenderBody()
+
+    <br />
+    <br />
+    <footer>Copyright 2021</footer>
+</body>
+</html>
