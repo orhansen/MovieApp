@@ -9,6 +9,9 @@ namespace MovieApp.Models
 {
     public class MovieResponse
     {
+        [Key]
+        [Required]
+        public int MovieID { get; set; }
         [Required]
         public string Category { get; set; }
         [Required]
@@ -25,3 +28,4 @@ namespace MovieApp.Models
         public string Notes { get; set; }
     }
 }
+

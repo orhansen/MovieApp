@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Edit Film";
+}
+
+@model MovieApp.Models.MovieResponse
+@*This cshtml holds the form that takes the information from the movie they are editing and will change the database.*@
+<form asp-action="MovieEditPost" method="post">
+    <input type="hidden" asp-for="MovieID" value="@Model.MovieID" />
+    <div>
+        <label asp-for="Category">Category:</label>
+        <input asp-for="Category" value="@Model.Category" />
+    </div>
+    <div>
+        <label asp-for="Title">Title:</label>
+        <input asp-for="Title" value="@Model.Title" />
+    </div>
+    <div>
+        <label asp-for="Year">Year:</label>
+        <input asp-for="Year" value="@Model.Year" />
+    </div>
+    <div>
+        <label asp-for="Director">Director:</label>
+        <input asp-for="Director" value="@Model.Director" />
+    </div>
+    <div>
+        <label asp-for="Rating">Rating:</label>
+        <select asp-for="Rating" value="@Model.Rating">
+            <option value="">Select One</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="Edited">Edited:</label>
+        <select asp-for="Edited" value="@Model.Edited">
+            <option value="">Select One</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="LentTo">Lent to:</label>
+        <input asp-for="LentTo" value="@Model.LentTo" />
+    </div>
+    <div>
+        <label asp-for="Notes">Notes:</label>
+        <input asp-for="Notes" value="@Model.Notes" />
+    </div>
+    <div>
+        <button type="submit">Submit Changes</button>
+    </div>
+    <div asp-validation-summary="All"></div> @*Dont know why on load, the validation errors show?*@
+</form>

@@ -12,11 +12,10 @@ namespace MovieApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private MovieListContext context { get; set; }
+        public HomeController(MovieListContext con)
         {
-            _logger = logger;
+            context = con;
         }
 
         public IActionResult Index()
@@ -35,7 +34,8 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempStorage.AddMovie(movie);
+                context.Movies.Add(movie);
+                context.SaveChanges();
 
                 return View("Confirmation", movie);
             }
@@ -45,9 +45,43 @@ namespace MovieApp.Controllers
             }
         }
 
+        //This will pull the same form as earlier, but altered to be an edit form. Wil ltake in the data from the movie object they are changing
+        [HttpGet]
+        public IActionResult MovieEdit(MovieResponse movie)
+        {
+            return View(context.Movies.Where(m => m == movie).FirstOrDefault());
+        }
+
+        //This posts the update to the database for the particular movie object
+        [HttpPost]
+        public IActionResult MovieEditPost(MovieResponse movie)
+        {
+
+            if (ModelState.IsValid)
+            {
+                context.Movies.Update(movie);
+                context.SaveChanges();
+
+                return View("MovieList", context.Movies.Where(movie => movie.Title != "Independence Day"));
+            }
+            else
+            {
+                return View("MovieEdit", context.Movies.Where(m => m == movie).FirstOrDefault());
+            }
+        }
+
+        [HttpPost]
+        public IActionResult MovieRemove(MovieResponse movie)
+        {
+            context.Movies.Remove(movie);
+            context.SaveChanges();
+
+            return View("MovieList", context.Movies.Where(movie => movie.Title != "Independence Day"));
+        }
+        
         public IActionResult MovieList()
         {
-            return View(TempStorage.Movies.Where(movie => movie.Title!="Independence Day"));
+            return View(context.Movies.Where(movie => movie.Title!="Independence Day"));
         }
 
         public IActionResult Podcast()

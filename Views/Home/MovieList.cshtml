@@ -7,30 +7,39 @@
 
 @model IEnumerable<MovieApp.Models.MovieResponse>
 @*This cshtml will take the information of our movies and display in  a table the movie list. As its grabbed from the movie response model*@
-<div>
-    <h2>Here is the current list of movies:</h2>
 
-    <table>
-        <thead>
-            <tr><th>Category</th><th>Title</th><th>Year</th><th>Director</th><th>Rating</th><th>Edited</th><th>Lent To</th><th>Notes</th></tr>
-        </thead>
-        @*Table for the information of the films*@
-        <tbody>
-            @foreach (MovieApp.Models.MovieResponse x in Model)
-            {
-                <tr>
-                    <td>@x.Category</td>
-                    <td>@x.Title</td>
-                    <td>@x.Year</td>
-                    <td>@x.Director</td>
-                    <td>@x.Rating</td>
-                    <td>@x.Edited</td>
-                    <td>@x.LentTo</td>
-                    <td>@x.Notes</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <br />
-    Click <a asp-action="MovieInsert">here</a> to add another film.
-</div>
+<h2>Here is the current list of movies:</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr><th>Category</th><th>Title</th><th>Year</th><th>Director</th><th>Rating</th><th>Edited</th><th>Lent To</th><th>Notes</th><th></th></tr>
+    </thead>
+    @*Table for the information of the films*@
+    <tbody>
+        @foreach (MovieApp.Models.MovieResponse x in Model)
+        {
+            <tr>
+                <td>@x.Category</td>
+                <td>@x.Title</td>
+                <td>@x.Year</td>
+                <td>@x.Director</td>
+                <td>@x.Rating</td>
+                <td>@x.Edited</td>
+                <td>@x.LentTo</td>
+                <td>@x.Notes</td>
+                <td>
+                    <form asp-action="MovieEdit" method="get" style="display:inline-block">
+                        <input type="hidden" name="MovieID" value="@x.MovieID"/>
+                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                    </form>
+                    <form asp-action="MovieRemove" method="post" style="display:inline-block">
+                        <input type="hidden" name="MovieID" value="@x.MovieID" />
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+Click <a asp-action="MovieInsert">here</a> to add another film.
